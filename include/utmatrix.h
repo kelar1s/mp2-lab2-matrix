@@ -63,7 +63,7 @@ template <class T>
 TVector<T>::TVector(int s, int si)
 {
 	//Новый код
-	if (s < 0 || s > MAX_VECTOR_SIZE)
+	if (s < 0 || s > MAX_VECTOR_SIZE || si < 0 || si > MAX_VECTOR_SIZE)
 		throw s;
 	Size = s;
 	StartIndex = si;
@@ -101,7 +101,7 @@ bool TVector<T>::operator==(const TVector &v) const
 	if (Size != v.Size || StartIndex != v.StartIndex) {
 		return false;
 	}
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < Size; i++) {
 		if (pVector[i] != v.pVector[i]) {
 			return false;
 		}
@@ -124,6 +124,7 @@ TVector<T>& TVector<T>::operator=(const TVector &v)
 	if (Size != v.Size) {
 		delete[] pVector;
 		Size = v.Size;
+		pVector = new T[Size];
 	}
 	StartIndex = v.StartIndex;
 	for (int i = 0; i < Size; i++) {
