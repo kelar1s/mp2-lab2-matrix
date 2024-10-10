@@ -91,7 +91,7 @@ TVector<T>::~TVector()
 template <class T> // доступ
 T& TVector<T>::operator[](int pos)
 {
-	if (pos < 0 || pos >= Size) throw -1;
+	if ((pos - StartIndex) < 0 || (pos - StartIndex) >= Size) throw -1;
 	return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
@@ -169,7 +169,7 @@ TVector<T> TVector<T>::operator+(const TVector<T> &v)
 	if (Size != v.Size) {
 		throw -1;
 	}
-	TVector<T> res(Size);
+	TVector<T> res(Size, StartIndex);
 	for (int i = 0; i < Size; i++) {
 		res.pVector[i] = pVector[i] + v.pVector[i];
 	}

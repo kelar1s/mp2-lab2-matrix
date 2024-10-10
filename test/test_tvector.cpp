@@ -88,7 +88,7 @@ TEST(TVector, can_assign_vectors_of_equal_size)
 	TVector<int> v1(size), v2(size);
 	for (int i = 0; i < size; i++) {
 		v1[i] = 1;
-		v2[i] = 1;
+		v2[i] = 10;
 	}
 	ASSERT_NO_THROW(v1 = v2);
 }
@@ -135,7 +135,7 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 {
 	const int size1 = 2, size2 = 5;
 	TVector<int> v1(size1), v2(size2);
-	EXPECT_NE(v1 == v2, 0);
+	EXPECT_EQ(v1 == v2, 0);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
